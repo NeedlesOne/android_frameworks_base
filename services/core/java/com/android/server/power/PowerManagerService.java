@@ -734,6 +734,9 @@ public final class PowerManagerService extends SystemService
                     }
                 }
                 mBootCompletedRunnables = null;
+                if (mNotifier != null) {
+                    mNotifier.setBootCompleted(true);
+                }
             }
         }
     }

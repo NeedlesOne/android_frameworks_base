@@ -128,6 +128,9 @@ final class Notifier {
     // True if a user activity message should be sent.
     private boolean mUserActivityPending;
 
+    private boolean mBootCompleted;
+    private String mChargerSound;
+
     public Notifier(Looper looper, Context context, IBatteryStats batteryStats,
             IAppOpsService appOps, SuspendBlocker suspendBlocker,
             WindowManagerPolicy policy) {
@@ -156,6 +159,8 @@ final class Notifier {
 
         mSuspendWhenScreenOffDueToProximityConfig = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_suspendWhenScreenOffDueToProximity);
+        mChargerSound = context.getResources().getString(
+                com.android.internal.R.string.def_wireless_charging_started_sound);
 
         // Initialize interactive state for battery stats.
         try {
@@ -550,6 +555,10 @@ final class Notifier {
      * Called when wireless charging has started so as to provide user feedback.
      */
     public void onWirelessChargingStarted() {
+        if (!mBootCompleted) {
+            return;
+        }
+
         if (DEBUG) {
             Slog.d(TAG, "onWirelessChargingStarted");
         }
@@ -564,6 +573,10 @@ final class Notifier {
      * Called when wireless charging has started so as to provide user feedback.
      */
     public void onWiredChargingStarted() {
+        if (!mBootCompleted) {
+            return;
+        }
+
         if (DEBUG) {
             Slog.d(TAG, "onWiredChargingStarted");
         }
@@ -706,13 +719,11 @@ final class Notifier {
         }
     };
 
-    private void playWirelessChargingStartedSound() {
+    private void playChargingStartedSound(boolean wireless) {
         final boolean enabled = Settings.Global.getInt(mContext.getContentResolver(),
-                Settings.Global.CHARGING_SOUNDS_ENABLED, 0) != 0;
-        final String soundPath = Settings.Global.getString(mContext.getContentResolver(),
-                Settings.Global.WIRELESS_CHARGING_STARTED_SOUND);
-        if (enabled && soundPath != null) {
-            final Uri soundUri = Uri.parse("file://" + soundPath);
+                Settings.Global.CHARGING_SOUNDS_ENABLED, 1) != 0;
+        if (enabled && mChargerSound != null) {
+            final Uri soundUri = Uri.parse("file://" + mChargerSound);
             if (soundUri != null) {
                 final Ringtone sfx = RingtoneManager.getRingtone(mContext, soundUri);
                 if (sfx != null) {
@@ -742,13 +753,24 @@ final class Notifier {
                     break;
 
                 case MSG_WIRELESS_CHARGING_STARTED:
-                case MSG_WIRED_CHARGING_STARTED:
-                    playWirelessChargingStartedSound();
+                    playChargingStartedSound(true);
                     break;
+
+                case MSG_WIRED_CHARGING_STARTED:
+                    playChargingStartedSound(false);
+                    break;
+
                 case MSG_SCREEN_BRIGHTNESS_BOOST_CHANGED:
                     sendBrightnessBoostChangedBroadcast();
                     break;
             }
         }
+    }
+
+    protected void setBootCompleted(boolean value) {
+        if (DEBUG) {
+            Slog.d(TAG, "setBootCompleted");
+        }
+        mBootCompleted = value;
     }
 }
