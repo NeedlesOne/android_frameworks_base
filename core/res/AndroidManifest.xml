@@ -565,6 +565,9 @@
     <protected-broadcast android:name="com.android.systemui.ACTION_DISMISS_KEYGUARD" />
     <protected-broadcast android:name="android.settings.SHOW_INPUT_METHOD_PICKER" />
 
+    <!-- Substratum -->
+    <protected-broadcast android:name="projekt.substratum.APP_CRASHED" />
+
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->
     <!-- ====================================================================== -->
