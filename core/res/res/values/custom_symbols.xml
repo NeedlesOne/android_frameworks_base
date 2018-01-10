@@ -77,6 +77,4 @@
 
   <!-- System fonts -->
   <java-symbol type="array" name="config_fontPackages" />
-
-  <java-symbol type="integer" name="config_flashlightProximityTimeout" />
 </resources>
