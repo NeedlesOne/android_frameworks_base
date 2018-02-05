@@ -2358,7 +2358,7 @@ public class PhoneWindowManager implements WindowManagerPolicy, DeviceKeyHandler
                 Constructor<?> constructor = klass.getConstructor(Context.class);
                 mDeviceKeyHandler = (DeviceKeyHandler) constructor.newInstance(
                         mContext);
-                mDeviceKeyHandler.setCallBack(this);
+                mDeviceKeyHandler.setWindowManagerPolicy(this);
                 if(DEBUG) Slog.d(TAG, "Device key handler loaded");
             } catch (Exception e) {
                 Slog.w(TAG, "Could not instantiate device key handler "
