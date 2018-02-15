@@ -60,4 +60,8 @@
   <java-symbol type="string" name="icon_mask_squircle_string" />
   <java-symbol type="string" name="icon_mask_circle_string" />
   <java-symbol type="string" name="icon_mask_teardrop_string" />
+
+  <!-- back kill -->
+  <java-symbol type="integer" name="config_backKillTimeout" />
+  <java-symbol type="string" name="app_killed_message" />
 </resources>
