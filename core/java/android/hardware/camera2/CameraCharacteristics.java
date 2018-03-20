@@ -23,6 +23,7 @@ import android.hardware.camera2.impl.PublicKey;
 import android.hardware.camera2.impl.SyntheticKey;
 import android.hardware.camera2.utils.TypeReference;
 import android.util.Rational;
+import android.app.ActivityThread;
 
 import java.util.Collections;
 import java.util.List;
