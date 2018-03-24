@@ -2977,6 +2977,13 @@ public final class Settings {
             "lock_pattern_tactile_feedback_enabled";
 
         /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
+                "lockscreen_quick_unlock_control";
+
+        /**
          * A formatted string of the next alarm that is set, or the empty string
          * if there is no alarm set.
          *
@@ -4499,6 +4506,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_CHARGING_COLOR =
                 "statusbar_battery_charging_color";
+
+        /**
+         * Unlock keystore with fingerprint after reboot
+         * @hide
+         */
+        public static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
 
         /**
          * enable color when charging
