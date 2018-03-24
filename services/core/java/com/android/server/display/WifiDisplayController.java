@@ -614,10 +614,10 @@ final class WifiDisplayController implements DumpUtils.Dump {
         // Step 1. Before we try to connect to a new device, tell the system we
         // have disconnected from the old one.
         if ((mRemoteDisplay != null || mExtRemoteDisplay != null) &&
-            (mConnectedDevice != mDesiredDevice)||
-            (mRemoteDisplayInterface != null && mConnectedDevice == null)) {
+                mConnectedDevice != mDesiredDevice) {
             Slog.i(TAG, "Stopped listening for RTSP connection on "
-                    + mRemoteDisplayInterface);
+                    + mRemoteDisplayInterface
+                    + " from Wifi display: " + mConnectedDevice.deviceName);
 
             if(mRemoteDisplay != null) {
                 mRemoteDisplay.dispose();
@@ -830,7 +830,8 @@ final class WifiDisplayController implements DumpUtils.Dump {
         }
 
         // Step 6. Listen for incoming RTSP connection.
-        if (mConnectedDevice != null && mRemoteDisplay == null) {
+        if (mConnectedDevice != null && mRemoteDisplay == null &&
+                                        mExtRemoteDisplay== null) {
             Inet4Address addr = getInterfaceAddress(mConnectedDeviceGroupInfo);
             if (addr == null) {
                 Slog.i(TAG, "Failed to get local interface address for communicating "
@@ -850,6 +851,54 @@ final class WifiDisplayController implements DumpUtils.Dump {
                    + " from Wifi display: " + mConnectedDevice.deviceName);
                mRemoteDisplay = RemoteDisplay.listen(iface, listener,
                        mHandler, mContext.getOpPackageName());
+            }
+
+            RemoteDisplay.Listener listener = new RemoteDisplay.Listener() {
+                @Override
+                public void onDisplayConnected(Surface surface,
+                        int width, int height, int flags, int session) {
+                    if (mConnectedDevice == oldDevice && !mRemoteDisplayConnected) {
+                        Slog.i(TAG, "Opened RTSP connection with Wifi display: "
+                                + mConnectedDevice.deviceName);
+                        mRemoteDisplayConnected = true;
+                        mHandler.removeCallbacks(mRtspTimeout);
+
+                        if (mWifiDisplayCertMode) {
+                            mListener.onDisplaySessionInfo(
+                                    getSessionInfo(mConnectedDeviceGroupInfo, session));
+                        }
+
+                        final WifiDisplay display = createWifiDisplay(mConnectedDevice);
+                        advertiseDisplay(display, surface, width, height, flags);
+                    }
+                }
+
+                @Override
+                public void onDisplayDisconnected() {
+                    if (mConnectedDevice == oldDevice) {
+                        Slog.i(TAG, "Closed RTSP connection with Wifi display: "
+                                + mConnectedDevice.deviceName);
+                        mHandler.removeCallbacks(mRtspTimeout);
+                        disconnect();
+                    }
+                }
+
+                @Override
+                public void onDisplayError(int error) {
+                    if (mConnectedDevice == oldDevice) {
+                        Slog.i(TAG, "Lost RTSP connection with Wifi display due to error "
+                                + error + ": " + mConnectedDevice.deviceName);
+                        mHandler.removeCallbacks(mRtspTimeout);
+                        handleConnectionFailure(false);
+                    }
+                }
+            };
+            if(ExtendedRemoteDisplayHelper.isAvailable()){
+                mExtRemoteDisplay = ExtendedRemoteDisplayHelper.listen(iface,
+                        listener, mHandler, mContext);
+            } else {
+                mRemoteDisplay = RemoteDisplay.listen(iface, listener,
+                        mHandler, mContext.getOpPackageName());
             }
 
             // Use extended timeout value for certification, as some tests require user inputs
