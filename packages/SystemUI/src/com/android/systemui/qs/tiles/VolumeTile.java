@@ -17,40 +17,42 @@
 
 package com.android.systemui.qs.tiles;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 
-import com.android.systemui.plugins.qs.QSTile.BooleanState;
+
+import com.android.internal.util.omni.OmniUtils;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.systemui.Dependency;
 import com.android.systemui.qs.QSHost;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
 
 public class VolumeTile extends QSTileImpl<BooleanState> {
-
-    private static final Intent SOUND_SETTINGS = new Intent("android.settings.SOUND_SETTINGS");
 
     public VolumeTile(QSHost host) {
         super(host);
     }
 
     @Override
-    protected void handleClick() {
+    public int getMetricsCategory() {
+        return MetricsEvent.CUSTOM_QUICK_TILES;
+    }
+
+    @Override
+    public void handleClick() {
         AudioManager am = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }
 
     @Override
     public Intent getLongClickIntent() {
-        return SOUND_SETTINGS;
-    }
-
-    @Override
-    protected void handleUpdateState(BooleanState state, Object arg) {
-        state.label = mContext.getString(R.string.quick_settings_volume_panel_label);
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_volume_panel); // TODO needs own icon
-        state.state = Tile.STATE_ACTIVE;
+        return new Intent().setComponent(new ComponentName(
+            "com.android.settings", "com.android.settings.Settings$SoundSettingsActivity"));
     }
 
     @Override
@@ -59,8 +61,11 @@ public class VolumeTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public int getMetricsCategory() {
-        return -Integer.MAX_VALUE + 38;
+    public void handleUpdateState(BooleanState state, Object arg) {
+        state.label = mContext.getString(R.string.quick_settings_volume_panel_label);
+        state.contentDescription = mContext.getString(
+                R.string.quick_settings_volume_panel_label);
+        state.icon = ResourceIcon.get(R.drawable.ic_qs_volume_panel); // TODO needs own icon
     }
 
     @Override
@@ -69,7 +74,7 @@ public class VolumeTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public void setListening(boolean listening) {
+    public void handleSetListening(boolean listening) {
         // Do nothing
     }
 }
