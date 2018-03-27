@@ -66,7 +66,7 @@ public class NavbarDisableTile extends QSTileImpl<BooleanState> {
 
     @Override
     public CharSequence getTileLabel() {
-        return mContext.getString(R.string.quick_settings_key_disable_label);
+        return mContext.getString(R.string.quick_settings_navbar_disable_label);
     }
 
     @Override
