@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-<<<<<<< HEAD
-/* //device/apps/common/assets/res/any/strings.xml
+/*
 **
 ** Copyright 2006, The Android Open Source Project
 **
@@ -22,7 +21,7 @@
     <color name="omni_logo_color">#a1c729</color>
 
     <!-- Floating action button -->
-    <color name="fab_color">?android:attr/colorAccent</color>
+    <color name="fab_color">@*android:color/omni_color5</color>
     <color name="floating_action_button_icon_color">@android:color/white</color>
 
 </resources>
