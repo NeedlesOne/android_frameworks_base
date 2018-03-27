@@ -4239,17 +4239,6 @@ public final class Settings {
         public static final String FAST_CHARGING_LED_ENABLED = "fast_charging_led_enabled";
 
         /**
-         * Immersive recents options
-         *
-         * 0 = Default AOSP look
-         * 1 = Statusbar only
-         * 2 = Navbar only
-         * 3 = Fullscreen
-         * @hide
-         */
-        public static final String IMMERSIVE_RECENTS = "immersive_recents";
-
-        /**
          * @hide
          */
         public static final String QS_LAYOUT_COLUMNS = "qs_layout_columns";
