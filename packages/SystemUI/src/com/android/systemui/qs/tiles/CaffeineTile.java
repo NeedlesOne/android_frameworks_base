@@ -17,6 +17,7 @@
 package com.android.systemui.qs.tiles;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -117,8 +118,31 @@ public class CaffeineTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
+    public void handleLongClick() {
+        setCpuInfoEnabled();
+    }
+
+    @Override
     public Intent getLongClickIntent() {
         return null;
+    }
+
+    private boolean setCpuInfoEnabled() {
+        boolean enabled = Settings.Global.getInt(mContext.getContentResolver(),
+                Settings.Global.SHOW_CPU_OVERLAY, 1) != 0;
+        Intent service = (new Intent())
+                .setClassName("com.android.systemui",
+                "com.android.systemui.CPUInfoService");
+        if (!enabled) {
+            Settings.Global.putInt(
+                mContext.getContentResolver(), Settings.Global.SHOW_CPU_OVERLAY, 1);
+            mContext.startService(service);
+        } else {
+            Settings.Global.putInt(
+                mContext.getContentResolver(), Settings.Global.SHOW_CPU_OVERLAY, 0);
+            mContext.stopService(service);
+        }
+        return enabled;
     }
 
     @Override
@@ -173,20 +197,20 @@ public class CaffeineTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.value = mWakeLock.isHeld();
         if (state.slash == null) {
             state.slash = new SlashState();
         }
         state.icon = mIcon;
-        state.slash.isSlashed = !state.value;
-
+        state.value = mWakeLock.isHeld();
         if (state.value) {
             state.label = formatValueWithRemainingTime();
+            state.slash.isSlashed = false;
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_caffeine_on);
             state.state = Tile.STATE_ACTIVE;
         } else {
             state.label = mContext.getString(R.string.quick_settings_caffeine_label);
+            state.slash.isSlashed = true;
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_caffeine_off);
             state.state = Tile.STATE_INACTIVE;
