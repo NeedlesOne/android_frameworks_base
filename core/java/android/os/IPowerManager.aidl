@@ -76,6 +76,9 @@ interface IPowerManager
     // see the effect of a settings change without applying it immediately
     void setTemporaryButtonBrightnessSettingOverride(int brightness);
 
+    // blocked wakelock support
+    String getSeenWakeLocks();
+
     // update the uids being synchronized by network socket request manager
     void updateBlockedUids(int uid, boolean isBlocked);
 }
