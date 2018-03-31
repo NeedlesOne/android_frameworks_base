@@ -1152,7 +1152,7 @@ public class RecentsView extends FrameLayout {
                      Settings.System.SHOW_CLEAR_ALL_RECENTS, 1, UserHandle.USER_CURRENT) != 0;
              clearRecentsLocation = Settings.System.getIntForUser(
                      mContext.getContentResolver(), Settings.System.RECENTS_CLEAR_ALL_LOCATION,
-                     3, UserHandle.USER_CURRENT);
+                     5, UserHandle.USER_CURRENT);
          }
      }
 }
