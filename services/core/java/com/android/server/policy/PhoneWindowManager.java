@@ -9322,7 +9322,7 @@ public class PhoneWindowManager implements WindowManagerPolicy, DeviceKeyHandler
                 IStatusBarService service = getStatusBarService();
                 if (service != null) {
                     try {
-                        service.expandNotificationsPanel();
+                        service.togglePanel();
                     } catch (RemoteException e) {
                         // do nothing.
                     }
