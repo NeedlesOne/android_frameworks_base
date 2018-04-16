@@ -4744,6 +4744,12 @@ public final class Settings {
         public static final String FONT_PACKAGES = "font_packages";
 
         /**
+         * @hide
+         */
+        public static final String LONG_PRESS_POWER_TORCH =
+                "long_press_power_torch";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5007,6 +5013,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_ALARM);
             PRIVATE_SETTINGS.add(FONT_INFO);
             PRIVATE_SETTINGS.add(FONT_PACKAGES);
+            PRIVATE_SETTINGS.add(LONG_PRESS_POWER_TORCH);
         }
 
         /**
