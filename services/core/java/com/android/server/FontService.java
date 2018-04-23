@@ -147,8 +147,10 @@ public class FontService extends IFontService.Stub {
                         synchronized (mFontMap) {
                             processFontPackage(packageName);
                         }
+                        break;
                     }
-                    break;
+                    // Fall through to MESSAGE_PACKAGE_REMOVED if the package
+                    // is not a font provider, in case it needs cleanup
                 case MESSAGE_PACKAGE_REMOVED:
                     packageName = (String) msg.obj;
                     boolean hadFonts = mFontMap.containsKey(packageName);
