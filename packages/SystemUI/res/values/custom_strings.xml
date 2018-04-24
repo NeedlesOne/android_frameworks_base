@@ -184,6 +184,11 @@
    <!-- Battery saver tile -->
     <string name="battery_saver_qs_tile_fully_charged">Fully Charged</string>
 
+   <!-- Reading Mode tile -->
+    <string name="accessibility_reading_mode">Reading mode</string>
+    <string name="accessibility_reading_mode_on">Reading mode enabled</string>
+    <string name="accessibility_reading_mode_off">Reading mode disabled</string>
+
      <!-- volte icon switch -->
      <string name="status_bar_volte">VOLTE</string>
 
