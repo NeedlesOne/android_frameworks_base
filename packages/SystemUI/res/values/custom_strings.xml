@@ -175,6 +175,11 @@
 
     <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
+
+   <!-- Battery saver tile -->
+    <string name="battery_saver_qs_tile_fully_charged">Fully Charged</string>
+
+
     <!-- Recents Panel -->
     <!-- The text for the button in the notification window-shade that clears
          all of the currently visible notifications. [CHAR LIMIT=10]-->
