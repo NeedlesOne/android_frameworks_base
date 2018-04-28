@@ -186,7 +186,7 @@ public class BatteryViewManager implements TunerService.Tunable {
         mCurrentBatteryView.setChargingColor(mChargingColor);
         mCurrentBatteryView.setChargingColorEnable(mLocation != BATTERY_LOCATION_AMBIENT && mChargingColorEnable);
         mCurrentBatteryView.setDottedLine(mDottedLine);
-        mCurrentBatteryView.setLowPercentColorEnabled(mLowPercentColorEnabled);
+        mCurrentBatteryView.setLowPercentColorEnabled(mLocation != BATTERY_LOCATION_AMBIENT && mLowPercentColorEnabled);
         mCurrentBatteryView.setPowerSaveBarColorEnabled(mPowerSaveBarColorEnabled);
         mCurrentBatteryView.applyStyle();
     }
