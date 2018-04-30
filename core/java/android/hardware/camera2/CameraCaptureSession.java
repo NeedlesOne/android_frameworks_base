@@ -873,6 +873,16 @@ public abstract class CameraCaptureSession implements AutoCloseable {
          */
         public void onCaptureStarted(@NonNull CameraCaptureSession session,
                 @NonNull CaptureRequest request, long timestamp, long frameNumber) {
+            // Temporary trampoline for API change transition
+            onCaptureStarted(session, request, timestamp);
+        }
+
+        /**
+         * Temporary for API change transition
+         * @hide
+         */
+        public void onCaptureStarted(CameraCaptureSession session,
+                CaptureRequest request, long timestamp) {
             // default empty implementation
         }
 
