@@ -3969,7 +3969,7 @@ public final class Settings {
          * @hide
          */
         public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
-        
+
         /**
          * List of alarms blocks selected
          * @hide
@@ -3981,6 +3981,12 @@ public final class Settings {
          * @hide
          */
         public static final String ALARM_BLOCKING_ENABLED = "alarm_blocking_enabled";
+
+        /**
+         * Whether to show or hide the running services icon
+         * @hide
+         */
+        public static final String QS_RUNNING_SERVICES_TOGGLE = "qs_running_services_toggle";
 
         /**
          * @hide
