@@ -298,7 +298,7 @@ public class PhoneWindowManager implements WindowManagerPolicy, DeviceKeyHandler
     static final boolean DEBUG_SPLASH_SCREEN = false;
     static final boolean DEBUG_WAKEUP = false;
     static final boolean SHOW_SPLASH_SCREENS = true;
-    static final boolean DEBUG_PROXI_SENSOR = true;
+    static final boolean DEBUG_PROXI_SENSOR = false;
 
     // Whether to allow dock apps with METADATA_DOCK_HOME to temporarily take over the Home key.
     // No longer recommended for desk docks;
