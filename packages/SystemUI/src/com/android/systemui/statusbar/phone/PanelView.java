@@ -59,8 +59,8 @@ import java.io.PrintWriter;
 public abstract class PanelView extends FrameLayout {
     public static final boolean DEBUG = PanelBar.DEBUG;
     public static final String TAG = PanelView.class.getSimpleName();
-    private static final int INITIAL_OPENING_PEEK_DURATION = 200;
-    private static final int PEEK_ANIMATION_DURATION = 360;
+    private static final int INITIAL_OPENING_PEEK_DURATION = 180;
+    private static final int PEEK_ANIMATION_DURATION = 300;
     private long mDownTime;
     private float mMinExpandHeight;
     private LockscreenGestureLogger mLockscreenGestureLogger = new LockscreenGestureLogger();
@@ -201,13 +201,13 @@ public abstract class PanelView extends FrameLayout {
 
     public PanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mFlingAnimationUtils = new FlingAnimationUtils(context, 0.6f /* maxLengthSeconds */,
-                0.6f /* speedUpFactor */);
-        mFlingAnimationUtilsClosing = new FlingAnimationUtils(context, 0.5f /* maxLengthSeconds */,
-                0.6f /* speedUpFactor */);
+        mFlingAnimationUtils = new FlingAnimationUtils(context, 0.5f /* maxLengthSeconds */,
+                0.5f /* speedUpFactor */);
+        mFlingAnimationUtilsClosing = new FlingAnimationUtils(context, 0.4f /* maxLengthSeconds */,
+                0.5f /* speedUpFactor */);
         mFlingAnimationUtilsDismissing = new FlingAnimationUtils(context,
-                0.5f /* maxLengthSeconds */, 0.2f /* speedUpFactor */, 0.6f /* x2 */,
-                0.84f /* y2 */);
+                0.4f /* maxLengthSeconds */, 0.1f /* speedUpFactor */, 0.6f /* x2 */,
+                0.74f /* y2 */);
         mBounceInterpolator = new BounceInterpolator();
         mFalsingManager = FalsingManager.getInstance(context);
         mNotificationsDragEnabled =
@@ -509,7 +509,7 @@ public abstract class PanelView extends FrameLayout {
     }
 
     private int getFalsingThreshold() {
-        float factor = mStatusBar.isWakeUpComingFromTouch() ? 1.5f : 1.0f;
+        float factor = mStatusBar.isWakeUpComingFromTouch() ? 1.0f : 0.5f;
         return (int) (mUnlockFalsingThreshold * factor);
     }
 
