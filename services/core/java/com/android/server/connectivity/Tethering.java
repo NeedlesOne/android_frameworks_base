@@ -39,7 +39,6 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProfile.ServiceListener;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -71,7 +70,6 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.ResultReceiver;
-import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.CarrierConfigManager;
@@ -1037,7 +1035,6 @@ public class Tethering extends BaseNetworkObserver {
 
         synchronized (mPublicSync) {
             if (enable) {
-                SystemProperties.set("mtp_hack", "true");
                 if (mRndisEnabled) {
                     final long ident = Binder.clearCallingIdentity();
                     try {
@@ -1051,7 +1048,6 @@ public class Tethering extends BaseNetworkObserver {
                     usbManager.setCurrentFunction(UsbManager.USB_FUNCTION_RNDIS, false);
                 }
             } else {
-                SystemProperties.set("mtp_hack", "");
                 final long ident = Binder.clearCallingIdentity();
                 try {
                     tetherMatchingInterfaces(IControlsTethering.STATE_AVAILABLE,

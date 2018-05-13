@@ -3952,13 +3952,6 @@ public final class Settings {
          */
 
         // Omni additions start system
-		
-		/**
-         * Whether to use the MTP by default after connecting to PC
-         * @hide
-         */
-        public static final String MTP_DIRTY_HACK = "mtp_dirty_hack";
-		
         /**
          * @hide
          */
