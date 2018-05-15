@@ -4138,6 +4138,12 @@ public final class Settings {
         public static final String DEVICE_PROXI_CHECK_ENABLED = "device_proxi_check_enabled";
 
         /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
+
+        /**
          * Enable Off-Screen Gesture Haptic feedback
          * KeyHandler
          * @hide
