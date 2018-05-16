@@ -119,6 +119,7 @@
         <item>com.snapchat.android</item>
         <item>com.instagram.android</item>
         <item>com.facebook.katana</item>
+        <item>com.facebook.katana.LoginActivity</item>
         <item>com.android.vending</item>
         <item>com.android.AssetBrowserActivity</item>
         <item>com.google.android.gms</item>
