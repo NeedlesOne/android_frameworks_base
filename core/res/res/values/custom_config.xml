@@ -127,6 +127,8 @@
         <item>com.csam.icici.bank.imobile</item>
         <item>com.linkedin.android</item>
         <item>com.spotify</item>
+        <item>com.spotify.music</item>
+        <item>com.spotify.music.MainActivity</item>
         <item>com.spotify.music.Spotify</item>
     </string-array>
 </resources>
