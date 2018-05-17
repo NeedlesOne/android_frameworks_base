@@ -155,6 +155,11 @@
     <!-- Volume panel QS tile -->
     <string name="quick_settings_volume_panel_label">Volume panel</string>
 
+    <!-- LTE QS tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE ON</string>
+    <string name="lte_off">LTE OFF</string>
+
     <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_hspap">HSPA+</string>
 
