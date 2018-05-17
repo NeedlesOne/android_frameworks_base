@@ -118,8 +118,11 @@
         <item>org.telegram.ui.LaunchActivity</item>
         <item>com.snapchat.android</item>
         <item>com.instagram.android</item>
+        <item>com.instagram.android.MainTabActivity</item>
         <item>com.facebook.katana</item>
         <item>com.facebook.katana.LoginActivity</item>
+        <item>com.facebook.orca</item>
+        <item>com.facebook.orca.StartScreenActivity</item>
         <item>com.android.vending</item>
         <item>com.android.AssetBrowserActivity</item>
         <item>com.google.android.gms</item>
@@ -127,6 +130,8 @@
         <item>com.facebook.lite</item>
         <item>com.csam.icici.bank.imobile</item>
         <item>com.linkedin.android</item>
+        <item>com.snapchat.android</item>
+        <item>com.snapchat.android.LandingPageActivity</item>
         <item>com.spotify</item>
         <item>com.spotify.music</item>
         <item>com.spotify.music.MainActivity</item>
