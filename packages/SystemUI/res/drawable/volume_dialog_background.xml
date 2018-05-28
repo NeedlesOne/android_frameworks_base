@@ -17,5 +17,4 @@
        android:shape="rectangle">
      <solid android:color="?android:attr/colorBackgroundFloating" />
      <corners android:radius="@*com.android.systemui:dimen/recents_task_view_rounded_corners_radius" />
-
 </shape>
