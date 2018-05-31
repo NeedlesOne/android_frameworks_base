@@ -491,7 +491,7 @@
     <string name="stream_voice_call" msgid="4410002696470423714">"Chamada"</string>
     <string name="stream_system" msgid="7493299064422163147">"Sistema"</string>
     <string name="stream_ring" msgid="8213049469184048338">"Toque"</string>
-    <string name="stream_music" msgid="9086982948697544342">"Suporte de dados"</string>
+    <string name="stream_music" msgid="9086982948697544342">"Media"</string>
     <string name="stream_alarm" msgid="5209444229227197703">"Alarme"</string>
     <string name="stream_notification" msgid="2563720670905665031">"Notificação"</string>
     <string name="stream_bluetooth_sco" msgid="2055645746402746292">"Bluetooth"</string>
