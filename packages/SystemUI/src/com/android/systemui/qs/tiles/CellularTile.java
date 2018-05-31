@@ -187,7 +187,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
         state.overlayIconId = cb.dataTypeIconId;
         state.dualTarget = true;
 
-        state.label =  isMobileIms() ? "IMS" : r.getString(R.string.mobile_data);
+        state.label = r.getString(R.string.mobile_data);
 
         final String signalContentDesc = cb.enabled && (cb.mobileSignalIconId > 0)
                 ? cb.signalContentDescription
