@@ -4805,12 +4805,6 @@ public final class Settings {
         public static final String HEADS_UP_NOTIFICATION_SNOOZE = "heads_up_notification_snooze";
 
         /**
-         * Heads up timeout configuration
-         * @hide
-         */
-        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
-
-        /**
          * Whether to display the wallpaper tint on the power menu
          * @hide
          */
@@ -5197,7 +5191,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ASPECT_RATIO_APPS_ENABLED);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_MENU_ARROW_KEYS);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
-            PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
         }
 
         /**
