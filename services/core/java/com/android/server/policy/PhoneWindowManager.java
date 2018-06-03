@@ -6597,6 +6597,8 @@ public class PhoneWindowManager implements WindowManagerPolicy, DeviceKeyHandler
         final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
         final boolean isInjected = (policyFlags & WindowManagerPolicy.FLAG_INJECTED) != 0;
         final boolean isVirtualHardKey = (event.getFlags() & KeyEvent.FLAG_VIRTUAL_HARD_KEY) != 0;
+        final boolean isPolicyWakeKey = (policyFlags & WindowManagerPolicy.FLAG_WAKE) != 0;
+        final boolean isEventWakeKey = event.isWakeKey();
 
         final int source = event.getSource();
         final boolean appSwitchKey = keyCode == KeyEvent.KEYCODE_APP_SWITCH;
@@ -6620,8 +6622,9 @@ public class PhoneWindowManager implements WindowManagerPolicy, DeviceKeyHandler
             Log.d(TAG, "interceptKeyTq keycode=" + keyCode
                     + " interactive=" + interactive + " keyguardActive=" + keyguardActive
                     + " policyFlags=" + Integer.toHexString(policyFlags) + " down=" + down
-                    + " disableKey=" + disableKey + " virtualKey=" + virtualKey
-                    + " isVirtualHardKey=" + isVirtualHardKey);
+                    + " disableKey=" + disableKey + " virtualKey=" + virtualKey + " isInjected=" + isInjected
+                    + " isVirtualHardKey=" + isVirtualHardKey + " isPolicyWakeKey=" + isPolicyWakeKey
+                    + " isEventWakeKey=" + isEventWakeKey);
         }
 
         if (mANBIHandler != null && mANBIEnabled && mANBIHandler.isScreenTouched()
@@ -6631,8 +6634,8 @@ public class PhoneWindowManager implements WindowManagerPolicy, DeviceKeyHandler
 
         // Basic policy based on interactive state.
         int result;
-        boolean isWakeKey = (policyFlags & WindowManagerPolicy.FLAG_WAKE) != 0
-                || event.isWakeKey()
+        boolean isWakeKey = isPolicyWakeKey
+                || isEventWakeKey
                 || isCustomWakeKey(keyCode);
 
         if (interactive || (isInjected && !isWakeKey)) {
