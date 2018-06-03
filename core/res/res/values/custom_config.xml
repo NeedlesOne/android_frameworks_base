@@ -137,6 +137,7 @@
         <item>com.spotify.music.MainActivity</item>
         <item>com.spotify.music.Spotify</item>
         <item>com.bsb.hike</item>
+        <item>com.slack</item>
     </string-array>
 
     <!-- Whether device has screen with higher aspect ratio -->
