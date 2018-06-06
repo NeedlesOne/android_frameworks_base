@@ -59,7 +59,4 @@
     <dimen name="recents_membar_spacing">12dp</dimen>
 
     <dimen name="burn_in_prevention_offset_y_land">20dp</dimen>
-
-    <!-- QS corner content padding -->
-    <dimen name="qs_corner_content_padding">8dp</dimen>
 </resources>
