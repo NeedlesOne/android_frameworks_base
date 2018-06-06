@@ -17,7 +17,6 @@
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="@*com.android.systemui:dimen/recents_task_view_rounded_corners_radius" />
     <gradient
             android:type="linear"
             android:angle="180"
